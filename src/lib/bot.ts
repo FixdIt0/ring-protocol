@@ -93,7 +93,7 @@ export class RingBot {
         token.matchId = match.id;
 
         await this.twitter.reply(
-          `⚔️ RING MATCH!\n\n$${recent.ticker} vs $${token.ticker}\n\nBoth pots merge. First to graduate wins ALL.\nWinner pot auto-buys the coin on migration 🚀\nLosers get NOTHING.\n\nBull up: reply "@RingProtocol bull"`,
+          `⚔️ RING MATCH!\n\n$${recent.ticker} vs $${token.ticker}\n\nBoth pots merge. First to graduate wins ALL.\nWinner pot auto-buys the coin on migration 🚀\nLosers get NOTHING.\n\nBull up: reply "@Ringdotfun bull"`,
           m.id,
         );
         console.log(`[ring-bot] PvP match: $${recent.ticker} vs $${token.ticker}`);
@@ -103,7 +103,7 @@ export class RingBot {
 
     const modeLabel = cmd.mode === "pvp" ? "⚔️ PVP" : "🥊 STANDARD";
     await this.twitter.reply(
-      `${modeLabel} $${token.ticker} is LIVE!\n\n${token.name}\nSplit: ${split.launcher}% launcher / ${split.target}% @${targetHandle} / ${split.bulls}% bulls\n${cmd.mode === "pvp" ? "Reply to this tweet to challenge with your own token!" : ""}\n\nBull up: reply "@RingProtocol bull"`,
+      `${modeLabel} $${token.ticker} is LIVE!\n\n${token.name}\nSplit: ${split.launcher}% launcher / ${split.target}% @${targetHandle} / ${split.bulls}% bulls\n${cmd.mode === "pvp" ? "Reply to this tweet to challenge with your own token!" : ""}\n\nBull up: reply "@Ringdotfun bull"`,
       m.id,
     );
     console.log(`[ring-bot] launched $${token.ticker} mode=${cmd.mode}`);

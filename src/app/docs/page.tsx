@@ -77,7 +77,7 @@ export default function DocsPage() {
         <section className="pix-card pix-card-amber">
           <h2 className="pix-display text-sm ring-gradient">BULLS</h2>
           <p className="mt-3 text-white/70">
-            Bulls are the community behind a token. Reply <code className="text-white">@RingProtocol bull</code> to any
+            Bulls are the community behind a token. Reply <code className="text-white">@Ringdotfun bull</code> to any
             launch tweet within 5 minutes to bull up. Bulls share 25% of the vault (default).
           </p>
           <div className="mt-3 text-sm text-white/50">
@@ -131,17 +131,17 @@ export default function DocsPage() {
           <div className="mt-4 space-y-4 text-sm">
             <div>
               <div className="pix-display text-[10px] text-white/40">STANDARD LAUNCH</div>
-              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@RingProtocol launch $TICKER Token Name
+              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@Ringdotfun launch $TICKER Token Name
 to: @recipient        (optional — defaults to tweet author)
 split: 40/30/25/5     (optional)`}</pre>
             </div>
             <div>
               <div className="pix-display text-[10px] text-white/40">PVP LAUNCH</div>
-              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@RingProtocol launch $TICKER Token Name pvp`}</pre>
+              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@Ringdotfun launch $TICKER Token Name pvp`}</pre>
             </div>
             <div>
               <div className="pix-display text-[10px] text-white/40">BULL UP</div>
-              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@RingProtocol bull`}</pre>
+              <pre className="mt-1 text-white/90 font-mono whitespace-pre-wrap">{`@Ringdotfun bull`}</pre>
             </div>
           </div>
           <div className="mt-4 text-white/40 text-xs pix-display leading-relaxed">

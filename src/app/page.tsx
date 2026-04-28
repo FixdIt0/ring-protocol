@@ -68,12 +68,12 @@ export default function Home() {
           <div className="pix-card">
             <div className="pix-display text-[10px] text-white/40">01</div>
             <div className="pix-display text-base mt-2 ring-gradient">LAUNCH</div>
-            <p className="mt-3 text-white/70">Reply to any tweet with <code className="text-white">@RingProtocol launch $TICKER Name</code>. Add <code className="text-white">pvp</code> for PvP mode.</p>
+            <p className="mt-3 text-white/70">Reply to any tweet with <code className="text-white">@Ringdotfun launch $TICKER Name</code>. Add <code className="text-white">pvp</code> for PvP mode.</p>
           </div>
           <div className="pix-card pix-card-red">
             <div className="pix-display text-[10px] text-white/40">02</div>
             <div className="pix-display text-base mt-2 ring-gradient">BULL</div>
-            <p className="mt-3 text-white/70">Reply <code className="text-white">@RingProtocol bull</code> to back a token. Bigger X account + earlier = bigger share.</p>
+            <p className="mt-3 text-white/70">Reply <code className="text-white">@Ringdotfun bull</code> to back a token. Bigger X account + earlier = bigger share.</p>
           </div>
           <div className="pix-card pix-card-amber">
             <div className="pix-display text-[10px] text-white/40">03</div>
@@ -113,14 +113,14 @@ export default function Home() {
         </div>
         <div className="pix-card pix-card-red">
           <div className="pix-display text-xs ring-gradient mb-3">STANDARD LAUNCH</div>
-          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@RingProtocol launch $TICKER Token Name
+          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@Ringdotfun launch $TICKER Token Name
 to: @recipient        (optional)
 split: 40/30/25/5     (optional — launcher/target/bulls/protocol)`}</pre>
           <div className="pix-display text-xs ring-gradient mt-6 mb-3">PVP LAUNCH</div>
-          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@RingProtocol launch $TICKER Token Name pvp`}</pre>
+          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@Ringdotfun launch $TICKER Token Name pvp`}</pre>
           <div className="text-white/50 text-xs mt-1">Someone replies to the same tweet with their own PvP launch → Ring Match activates.</div>
           <div className="pix-display text-xs ring-gradient mt-6 mb-3">BULL UP</div>
-          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@RingProtocol bull`}</pre>
+          <pre className="text-sm text-white/90 font-mono whitespace-pre-wrap leading-relaxed">{`@Ringdotfun bull`}</pre>
           <div className="text-white/50 text-xs mt-1">Reply to any RING launch tweet within 5 minutes.</div>
         </div>
       </section>

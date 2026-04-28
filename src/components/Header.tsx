@@ -19,7 +19,7 @@ export function Header() {
         <Link href="/docs" className="pix-link hidden sm:inline">DOCS</Link>
         <WalletButton />
         <a
-          href="https://x.com/RingProtocol"
+          href="https://x.com/Ringdotfun"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Follow on X"
