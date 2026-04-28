@@ -1,9 +1,15 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 import { RingLogo } from "./RingLogo";
 import { WalletButton } from "./WalletButton";
 
+const CA = "A6PnrEfGjMwX2or2Tiqx8tUXVNHeivJq3xWgGAPjbrrr";
+
 export function Header() {
+  const [copied, setCopied] = useState(false);
+  const copyCA = () => { navigator.clipboard.writeText(CA); setCopied(true); setTimeout(() => setCopied(false), 1500); };
+
   return (
     <header className="relative z-20 px-6 py-4 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-3 group">
@@ -17,6 +23,9 @@ export function Header() {
         <Link href="/claims" className="pix-link hidden sm:inline">CLAIMS</Link>
         <Link href="/leaderboard" className="pix-link hidden sm:inline">RANKS</Link>
         <Link href="/docs" className="pix-link hidden sm:inline">DOCS</Link>
+        <button onClick={copyCA} title={`Copy CA: ${CA}`} className="pix-btn pix-btn-grad" style={{ padding: "8px 12px", fontSize: 10 }}>
+          {copied ? "COPIED!" : "CA: A6Pn…brrr"}
+        </button>
         <WalletButton />
         <a
           href="https://x.com/Ringdotfun"

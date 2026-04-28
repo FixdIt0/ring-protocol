@@ -1,3 +1,6 @@
+/* ── RING token CA ── */
+export const RING_CA = "A6PnrEfGjMwX2or2Tiqx8tUXVNHeivJq3xWgGAPjbrrr";
+
 /* ── Fee config (matches FAX token on Printr) ── */
 export const PRINTR_FEE = {
   type: "creator" as const,
