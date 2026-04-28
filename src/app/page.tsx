@@ -78,7 +78,7 @@ export default function Home() {
           <div className="pix-card pix-card-amber">
             <div className="pix-display text-[10px] text-white/40">03</div>
             <div className="pix-display text-base mt-2 ring-gradient">CLAIM</div>
-            <p className="mt-3 text-white/70">Fees accumulate from trading. Claim your split on <span className="ring-gradient">ring.xyz</span> via X login.</p>
+            <p className="mt-3 text-white/70">Fees accumulate from trading. Claim your split on <span className="ring-gradient">ringsol.fun</span> via X login.</p>
           </div>
         </div>
       </section>

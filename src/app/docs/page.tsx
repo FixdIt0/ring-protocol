@@ -29,7 +29,7 @@ export default function DocsPage() {
           </p>
           <p className="mt-3 text-white/70">
             <strong className="text-white">The target doesn&apos;t need to do anything upfront.</strong> Their fees accumulate
-            automatically. They claim by logging in with X on ring.xyz and connecting a wallet.
+            automatically. They claim by logging in with X on ringsol.fun and connecting a wallet.
           </p>
           <div className="mt-4 pix-card pix-card-gold">
             <div className="pix-display text-[10px] ring-gradient">🎯 THE MISSION</div>
@@ -158,7 +158,7 @@ split: 40/30/25/5     (optional)`}</pre>
         <section className="pix-card pix-card-gold">
           <h2 className="pix-display text-sm ring-gradient">CLAIMING FEES</h2>
           <ol className="mt-3 space-y-2 text-white/70 list-decimal list-inside">
-            <li>Go to ring.xyz/claims</li>
+            <li>Go to ringsol.fun/claims</li>
             <li>Sign in with X — we match your handle against all vaults</li>
             <li>Connect a Solana wallet</li>
             <li>Claim your SOL</li>

@@ -30,6 +30,9 @@ export const PVP = {
   autoBuyOnMigration: true, // winner pot auto-buys the token on graduation
 };
 
+/* ── Protocol buyback fee — taken from every claim payout ── */
+export const PROTOCOL_BUYBACK_FEE = 0.05; // 5% of every claim → buyback into RING chart
+
 /* ── Bull scoring ── */
 export const BULL = {
   followerCap: 50_000,

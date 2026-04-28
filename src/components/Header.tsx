@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { RingLogo } from "./RingLogo";
+import { WalletButton } from "./WalletButton";
 
 export function Header() {
   return (
@@ -16,6 +17,7 @@ export function Header() {
         <Link href="/claims" className="pix-link hidden sm:inline">CLAIMS</Link>
         <Link href="/leaderboard" className="pix-link hidden sm:inline">RANKS</Link>
         <Link href="/docs" className="pix-link hidden sm:inline">DOCS</Link>
+        <WalletButton />
         <a
           href="https://x.com/RingProtocol"
           target="_blank"

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { store } from "@/lib/store";
+import { PROTOCOL_BUYBACK_FEE } from "@/lib/types";
 import { calcShares } from "@/lib/scoring";
 
 export async function GET(req: Request) {
@@ -17,20 +18,30 @@ export async function POST(req: Request) {
   if (!token) return NextResponse.json({ error: "token not found" }, { status: 404 });
 
   const { split, vaultBalance: vault } = token;
-  let amount = 0;
+  let gross = 0;
 
-  if (role === "launcher") amount = vault * (split.launcher / 100);
-  else if (role === "target") amount = vault * (split.target / 100);
+  if (role === "launcher") gross = vault * (split.launcher / 100);
+  else if (role === "target") gross = vault * (split.target / 100);
   else if (role === "bull") {
     const bulls = store.getBullsForToken(tokenId);
     const pool = vault * (split.bulls / 100);
     const shares = calcShares(bulls, pool);
-    amount = shares.get(xHandle) ?? 0;
+    gross = shares.get(xHandle) ?? 0;
   }
 
-  if (amount <= 0) return NextResponse.json({ error: "nothing to claim" }, { status: 400 });
+  if (gross <= 0) return NextResponse.json({ error: "nothing to claim" }, { status: 400 });
 
-  const claim = { id: `claim_${Date.now()}`, tokenId, xHandle, role, amount, walletAddress, claimed: false, claimedAt: null };
+  // 5% protocol fee → RING buyback
+  const fee = gross * PROTOCOL_BUYBACK_FEE;
+  const net = gross - fee;
+
+  const claim = {
+    id: `claim_${Date.now()}`, tokenId, xHandle, role,
+    amount: net, walletAddress, claimed: false, claimedAt: null,
+  };
   store.addClaim(claim);
-  return NextResponse.json(claim);
+
+  // TODO: execute buyback with `fee` SOL into RING token on DEX
+
+  return NextResponse.json({ ...claim, grossAmount: gross, buybackFee: fee });
 }

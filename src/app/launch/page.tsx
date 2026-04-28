@@ -1,15 +1,20 @@
 "use client";
 import { useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { Marquee } from "@/components/Marquee";
 
 export default function LaunchPage() {
+  const { publicKey, connected } = useWallet();
+  const { setVisible } = useWalletModal();
   const [name, setName] = useState("");
   const [ticker, setTicker] = useState("");
   const [target, setTarget] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [mode, setMode] = useState<"standard" | "pvp">("standard");
   const [split, setSplit] = useState({ launcher: 40, target: 30, bulls: 25, protocol: 5 });
-
+  const [launching, setLaunching] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; msg: string } | null>(null);
   const updateSplit = (key: keyof typeof split, val: number) => {
     const next = { ...split, [key]: val };
     const sum = next.launcher + next.target + next.bulls + next.protocol;
@@ -106,9 +111,38 @@ export default function LaunchPage() {
           </div>
         </div>
 
-        <button className="pix-btn pix-btn-grad w-full" disabled={!name || !ticker || split.launcher + split.target + split.bulls + split.protocol !== 100}>
-          {name && ticker ? `${mode === "pvp" ? "⚔️" : "🥊"} LAUNCH $${ticker}` : "FILL IN DETAILS"}
-        </button>
+        {result && (
+          <div className={`pix-card ${result.ok ? "pix-card-gold" : "pix-card-red"}`}>
+            <div className="pix-display text-[10px]">{result.ok ? "✅ LAUNCHED" : "❌ ERROR"}</div>
+            <div className="text-sm text-white/70 mt-1">{result.msg}</div>
+          </div>
+        )}
+
+        {!connected ? (
+          <button onClick={() => setVisible(true)} className="pix-btn pix-btn-grad w-full">
+            CONNECT WALLET TO LAUNCH
+          </button>
+        ) : (
+          <button
+            className="pix-btn pix-btn-grad w-full"
+            disabled={!name || !ticker || split.launcher + split.target + split.bulls + split.protocol !== 100 || launching}
+            onClick={async () => {
+              setLaunching(true); setResult(null);
+              try {
+                const res = await fetch("/api/launch", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ name, ticker, mode, target, split, wallet: publicKey?.toBase58() }),
+                });
+                const data = await res.json();
+                setResult(res.ok ? { ok: true, msg: `$${ticker} launched! Token ID: ${data.tokenId}` } : { ok: false, msg: data.error });
+              } catch (e) { setResult({ ok: false, msg: String(e) }); }
+              setLaunching(false);
+            }}
+          >
+            {launching ? "LAUNCHING..." : `${mode === "pvp" ? "⚔️" : "🥊"} LAUNCH $${ticker || "..."}`}
+          </button>
+        )}
       </div>
     </div>
   );
