@@ -31,7 +31,7 @@ export function parseCommand(text: string): ParsedCmd {
   const cmd: LaunchCmd = { kind: "launch", ticker: m[1]!.toUpperCase(), name: m[2]!.trim(), mode };
 
   const to = FIELD_RE("to").exec(text);
-  if (to) cmd.target = to[1]!.trim().replace(/^@/, "");
+  if (to) cmd.target = to[1]!.trim().replace(/^@+/, "");
 
   // Configurable split — e.g. "split: 50/20/25/5"
   const splitMatch = FIELD_RE("split").exec(text);

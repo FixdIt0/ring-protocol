@@ -15,6 +15,7 @@ export function Header() {
         <Link href="/tokens" className="pix-link hidden sm:inline">TOKENS</Link>
         <Link href="/claims" className="pix-link hidden sm:inline">CLAIMS</Link>
         <Link href="/leaderboard" className="pix-link hidden sm:inline">RANKS</Link>
+        <Link href="/docs" className="pix-link hidden sm:inline">DOCS</Link>
         <a
           href="https://x.com/RingProtocol"
           target="_blank"
