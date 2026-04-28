@@ -3,6 +3,7 @@ import { parseCommand, type LaunchCmd } from "./parser";
 import { calcBullPoints } from "./scoring";
 import { store } from "./store";
 import { PVP, DEFAULT_SPLITS, type Token, type Bull, type RingMatch, type VaultSplit } from "./types";
+import { launchToken } from "./printr";
 
 const POLL_MS = 60_000;
 
@@ -59,6 +60,22 @@ export class RingBot {
       status: "bonding", matchId: null, createdAt: Date.now(),
     };
     store.addToken(token);
+
+    // Deploy on Printr (non-blocking — update token with mint after)
+    const creatorWallet = process.env.SVM_WALLET_PUBLIC_KEY ?? "";
+    if (creatorWallet) {
+      launchToken({
+        name: cmd.name, ticker: cmd.ticker, imageUrl: cmd.img,
+        creatorWallet, fee: cmd.fee, ammfee: cmd.ammfee,
+      }).then((result) => {
+        if (result.error) { console.error(`[ring-bot] Printr deploy failed for $${cmd.ticker}:`, result.error); return; }
+        token.mint = result.mint;
+        token.imageUrl = token.imageUrl || result.tradeUrl;
+        console.log(`[ring-bot] $${cmd.ticker} deployed on Printr: mint=${result.mint}`);
+      }).catch((e) => console.error(`[ring-bot] Printr error:`, e));
+    } else {
+      console.warn("[ring-bot] SVM_WALLET_PUBLIC_KEY not set — skipping Printr deploy");
+    }
 
     // PvP mode: check for match in same thread
     if (cmd.mode === "pvp") {

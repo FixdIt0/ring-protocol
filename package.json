@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@printr/sdk": "^0.4.0",
     "@solana/wallet-adapter-base": "^0.9.27",
     "@solana/wallet-adapter-react": "^0.15.39",
     "@solana/wallet-adapter-react-ui": "^0.9.39",
     "@solana/web3.js": "^1.98.4",
+    "@types/pg": "^8.20.0",
     "bs58": "^6.0.0",
     "next": "16.2.4",
     "next-auth": "^4.24.14",
+    "pg": "^8.20.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "twitter-api-v2": "^1.29.0"
