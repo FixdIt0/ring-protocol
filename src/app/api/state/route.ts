@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { store } from "@/lib/store";
-import { PRINTR_FEE, SPLIT, PVP } from "@/lib/types";
+import { PRINTR_FEE, DEFAULT_SPLITS, PVP } from "@/lib/types";
 
 export async function GET() {
   return NextResponse.json({
@@ -9,7 +9,7 @@ export async function GET() {
     chain: "solana",
     launchpad: "printr",
     feeConfig: PRINTR_FEE,
-    split: SPLIT,
+    splits: DEFAULT_SPLITS,
     pvp: PVP,
     stats: store.stats,
   });

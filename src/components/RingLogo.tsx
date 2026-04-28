@@ -12,10 +12,9 @@ export function RingLogo({ size = 64, className = "" }: { size?: number; classNa
     >
       <defs>
         <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3fb8ff" />
-          <stop offset="35%" stopColor="#ff3fa8" />
-          <stop offset="70%" stopColor="#ff7a3f" />
-          <stop offset="100%" stopColor="#ffd83f" />
+          <stop offset="0%" stopColor="#ff2d2d" />
+          <stop offset="50%" stopColor="#ff8c00" />
+          <stop offset="100%" stopColor="#ffd700" />
         </linearGradient>
       </defs>
       <g fill="url(#ring-grad)">

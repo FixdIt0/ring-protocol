@@ -1,36 +1,40 @@
-/* ── Fee config (matches the FAX token on Printr) ── */
+/* ── Fee config (matches FAX token on Printr) ── */
 export const PRINTR_FEE = {
   type: "creator" as const,
-  bondingCurve: 1.0,        // 1% during bonding
-  postGrad: {
-    protocol: 0.20,
-    provider: 0.40,
-    custom: 1.40,            // → this is what funds the RING vault
-    total: 2.00,
-  },
+  bondingCurve: 1.0,
+  postGrad: { protocol: 0.20, provider: 0.40, custom: 1.40, total: 2.00 },
 };
 
-/* ── Vault split ── */
-export const SPLIT = {
-  launcher: 40,
-  target: 30,
-  backers: 25,
-  protocol: 5,
-};
+/* ── Launch modes ── */
+export type LaunchMode = "standard" | "pvp";
+
+/* ── Default splits (configurable per token) ── */
+export const DEFAULT_SPLITS = {
+  standard: { launcher: 40, target: 30, bulls: 25, protocol: 5 },
+  pvp: { launcher: 40, target: 30, bulls: 25, protocol: 5 },
+} as const;
+
+export interface VaultSplit {
+  launcher: number;
+  target: number;
+  bulls: number;
+  protocol: number;
+}
 
 /* ── PvP config ── */
 export const PVP = {
-  matchWindowMin: 10,        // 2nd launch within 10 min = ring match
-  backingWindowMin: 5,       // 5 min to back after launch
-  loserPayout: 0,            // losers get nothing
-  matchTimeoutHours: 24,     // void if neither graduates in 24h
+  matchWindowMin: 10,
+  bullingWindowMin: 5,
+  loserPayout: 0,
+  matchTimeoutHours: 24,
+  autoBuyOnMigration: true, // winner pot auto-buys the token on graduation
 };
 
-/* ── Backer scoring ── */
-export const BACKER = {
-  followerCap: 50_000,       // bonus caps at 50K followers
-  followerDivisor: 1_000,    // bonus = min(followers/1000, 50)
-  earlyMultipliers: [2, 1.5, 1, 1] as readonly number[], // quartile multipliers
+/* ── Bull scoring ── */
+export const BULL = {
+  followerCap: 50_000,
+  followerDivisor: 1_000,
+  earlyMultipliers: [2, 1.5, 1, 1] as readonly number[],
 };
 
 /* ── Types ── */
@@ -38,22 +42,24 @@ export interface Token {
   id: string;
   ticker: string;
   name: string;
-  mint: string | null;       // Printr token mint address
+  mint: string | null;
   imageUrl: string | null;
+  launchMode: LaunchMode;
+  split: VaultSplit;
   launcherXHandle: string;
   launcherXId: string;
   targetXHandle: string;
   targetXId: string | null;
-  tweetId: string;           // the launch tweet
-  conversationId: string;    // thread ID for PvP matching
+  tweetId: string;
+  conversationId: string;
   vaultAddress: string;
-  vaultBalance: number;      // SOL accumulated
+  vaultBalance: number;
   status: "bonding" | "graduated" | "dead";
   matchId: string | null;
   createdAt: number;
 }
 
-export interface Backer {
+export interface Bull {
   xHandle: string;
   xId: string;
   followers: number;
@@ -77,7 +83,7 @@ export interface Claim {
   id: string;
   tokenId: string;
   xHandle: string;
-  role: "launcher" | "target" | "backer";
+  role: "launcher" | "target" | "bull";
   amount: number;
   walletAddress: string | null;
   claimed: boolean;

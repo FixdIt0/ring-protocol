@@ -1,14 +1,11 @@
 const variants: Record<string, string> = {
   default: "pix-card",
-  pink: "pix-card pix-card-pink",
-  orange: "pix-card pix-card-orange",
-  gold: "pix-card pix-card-gold",
   red: "pix-card pix-card-red",
+  amber: "pix-card pix-card-amber",
+  gold: "pix-card pix-card-gold",
 };
 
-export function StatCard({
-  label, value, suffix, variant = "default",
-}: {
+export function StatCard({ label, value, suffix, variant = "default" }: {
   label: string; value: string; suffix?: string; variant?: string;
 }) {
   return (
