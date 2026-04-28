@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { store } from "@/lib/store";
+import { PRINTR_FEE, SPLIT, PVP } from "@/lib/types";
 
 export async function GET() {
   return NextResponse.json({
@@ -6,13 +8,9 @@ export async function GET() {
     protocol: "RING",
     chain: "solana",
     launchpad: "printr",
-    feeConfig: {
-      type: "creator",
-      bondingCurve: "1.00%",
-      postGrad: { protocol: "0.20%", provider: "0.40%", custom: "1.40%", total: "2.00%" },
-    },
-    split: { launcher: 40, target: 30, backers: 25, protocol: 5 },
-    pvp: { matchWindow: "10min", backingWindow: "5min", loserPayout: 0 },
-    stats: { totalVaults: 0, tokensLaunched: 0, ringMatches: 0, feesClaimed: 0 },
+    feeConfig: PRINTR_FEE,
+    split: SPLIT,
+    pvp: PVP,
+    stats: store.stats,
   });
 }
