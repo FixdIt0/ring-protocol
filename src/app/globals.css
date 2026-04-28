@@ -11,8 +11,9 @@
 }
 
 /* ── Base ── */
-html { background: #0a0a0a; color: #e8e8e8; }
-body { font-family: var(--font-pixel); font-size: 18px; }
+html { background: #0a0a0a; color: #e8e8e8; cursor: none; }
+body { font-family: var(--font-pixel); font-size: 18px; cursor: none; }
+*, *::before, *::after { cursor: none !important; }
 ::selection { background: #ff2d2d; color: #000; }
 
 /* ── Gradient bar ── */
