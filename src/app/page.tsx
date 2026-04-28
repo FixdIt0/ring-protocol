@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { RingLogo } from "@/components/RingLogo";
 import { Marquee } from "@/components/Marquee";
-import { StatCard } from "@/components/StatCard";
+import { LiveStats } from "@/components/LiveStats";
 
 export default function Home() {
   return (
@@ -23,12 +23,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6">
-        <StatCard label="TOTAL IN VAULTS" value="0.00" suffix="SOL" variant="gold" />
-        <StatCard label="TOKENS LAUNCHED" value="000" />
-        <StatCard label="RING MATCHES" value="000" variant="red" />
-        <StatCard label="FEES CLAIMED" value="0.00" suffix="SOL" variant="amber" />
-      </section>
+      <LiveStats />
 
       {/* Two launch modes */}
       <section className="mt-20">
